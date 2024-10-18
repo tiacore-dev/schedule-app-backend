@@ -12,9 +12,7 @@ from app.routes import register_routes
 from app.scheduler.scheduler import initialize_scheduler, start_scheduler
 
 
-
 load_dotenv()
-
 
 
 def create_app():
