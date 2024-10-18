@@ -12,4 +12,4 @@ Authlib
 alembic
 flask-restx
 flask-cors
-psycopg2'
+psycopg2
