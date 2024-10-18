@@ -2,7 +2,7 @@ import os
 from dotenv import load_dotenv
 from app.database import init_db, set_db_globals
 
-load_dotenv
+load_dotenv()
 
 password=os.getenv('PASSWORD')
 username=os.getenv('LOGIN')
