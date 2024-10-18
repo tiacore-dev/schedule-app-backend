@@ -1,0 +1,14 @@
+Flask
+Flask-Login
+Flask-JWT-Extended
+SQLAlchemy
+werkzeug
+python-dotenv
+requests
+apscheduler
+datetime
+google-oauth2-tool
+Authlib
+alembic
+flask-restx
+flask-cors

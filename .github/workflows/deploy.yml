@@ -1,0 +1,25 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches:
+      - main  # Укажите вашу основную ветку
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Copy files to server
+        run: scp -r ./* ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}:/path/to/your/project
+
+      - name: Restart Docker containers
+        run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} "cd /path/to/your/project && docker-compose down && docker-compose up -d"
