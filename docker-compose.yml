@@ -31,5 +31,15 @@ services:
     volumes:
       - .:/app
 
+  init_password:
+    build: .
+    command: python password.py  # Запуск скрипта для добавления админа
+    environment:
+      - DATABASE_URL=${DATABASE_URL}  # Используем переменную из .env
+    depends_on:
+      - alembic  # Ждем завершения alembic
+    volumes:
+      - .:/app
+
 volumes:
   postgres_data:
