@@ -23,6 +23,8 @@ response_auth = login_ns.model('Tokens', {
     'refresh_token': fields.Raw(required=True, description='Refresh token for user')
 })
 
+
+
 @login_ns.route('/')
 class Auth(Resource):
     @cross_origin()
