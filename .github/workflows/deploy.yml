@@ -13,18 +13,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Docker Login
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKER_LOGIN }}
-          password: ${{ secrets.DOCKER_TOKEN }}
-
-      - name: Build and push Docker image
-        run: |
-          docker build -t flask-schedule-app-backend:latest .
-          docker tag flask-schedule-app-backend:latest vesta118/flask-schedule-app-backend:latest
-          docker push vesta118/flask-schedule-app-backend:latest
-
       - name: Setup SSH
         uses: webfactory/ssh-agent@v0.5.3
         with:
@@ -37,5 +25,9 @@ jobs:
           ssh-keyscan -H ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
 
+      - name: Upload code to server
+        run: |
+          scp -r ./* ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}:/apps/flask-schedule-app-backend
+
       - name: Restart Docker containers
-        run: ssh -t ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} "cd apps/flask-schedule-app-backend && docker-compose down && docker-compose up -d"
+        run: ssh -t ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} "cd /apps/flask-schedule-app-backend && docker-compose down && docker-compose up -d"
