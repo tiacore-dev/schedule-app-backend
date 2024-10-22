@@ -6,4 +6,4 @@ home_ns = Namespace('', description='Check running')
 @home_ns.route('/')
 class Home(Resource):
     def get(self):
-        return {"message": "The service is running", "error": "no error"}
+        return {"message": "The service is running", "hello": "no error"}
