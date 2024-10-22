@@ -31,4 +31,4 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Restart Docker containers
-        run: ssh -t ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} "cd /home/viktoria/apps/flask-schedule-app-backend && docker-compose down && docker-compose up -d"
+        run: ssh -t ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} "cd /apps/flask-schedule-app-backend && docker-compose down && docker-compose up -d"
