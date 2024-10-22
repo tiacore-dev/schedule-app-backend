@@ -25,9 +25,7 @@ jobs:
           ssh-keyscan -H ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
 
-      - name: Upload code to server
-        run: |
-          scp -r ./* ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}:apps/flask-schedule-app-backend
 
-      - name: Restart Docker containers
-        run: ssh -t ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} "cd apps/flask-schedule-app-backend && docker-compose down && docker-compose up -d"
+      - name: Update code on server
+        run: ssh -t ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} "cd apps/flask-schedule-app-backend && git pull origin main && docker-compose down && docker-compose up -d"
+
