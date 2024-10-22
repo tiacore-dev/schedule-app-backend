@@ -27,7 +27,7 @@ jobs:
 
       - name: Upload code to server
         run: |
-          scp -r ./* ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}:/apps/flask-schedule-app-backend
+          scp -r ./* ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}:apps/flask-schedule-app-backend
 
       - name: Restart Docker containers
-        run: ssh -t ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} "cd /apps/flask-schedule-app-backend && docker-compose down && docker-compose up -d"
+        run: ssh -t ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} "cd apps/flask-schedule-app-backend && docker-compose down && docker-compose up -d"
