@@ -3,7 +3,7 @@ from flask_restx import Namespace, Resource
 
 home_ns = Namespace('', description='Check running')
 
-@home_ns.route('/')
+@home_ns.route('/home')
 class Home(Resource):
     def get(self):
-        return {"message": "The service is running", "Hello,": "world!", "It's almost": "Done"}
+        return {"message": "The service is running", "Hello,": "world!", "It's": "Done"}

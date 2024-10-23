@@ -63,7 +63,7 @@ def create_app():
     @app.before_request
     def before_request():
         # List of routes that do not require authentication
-        open_routes = ['/auth', '/swagger.json', '/swaggerui/', '/swagger']
+        open_routes = ['/auth', '/swagger.json', '/swaggerui/', '/swagger', '/home']
 
         # Skip authentication check for specific open routes
         if any(request.path.startswith(route) for route in open_routes):
