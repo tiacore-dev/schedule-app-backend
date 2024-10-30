@@ -4,7 +4,7 @@ from flask_jwt_extended import jwt_required
 from app.validators import validate_uuid, validate_uuid_param
 from flask_cors import cross_origin
 
-schedule_details_ns = Namespace('schedule', description='Schedule Details operations')
+schedule_details_ns = Namespace('/app-schedule/schedule', description='Schedule Details operations')
 
 # Определение модели для расписания
 schedule_detail_model = schedule_details_ns.model('ScheduleDetail', {
