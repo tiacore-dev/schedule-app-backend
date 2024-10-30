@@ -45,7 +45,7 @@ def create_app():
 
     app.config['APPLICATION_ROOT'] = '/app-schedule'
 
-    app.wsgi_app = DispatcherMiddleware({'/app-schedule': app.wsgi_app})
+    #app.wsgi_app = DispatcherMiddleware({'/app-schedule': app.wsgi_app})
     # Инициализация базы данных
     engine, Session, Base = init_db(database_url)
 
