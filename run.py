@@ -9,7 +9,7 @@ def simple(env, resp):
     resp(b'200 OK', [(b'Content-Type', b'text/plain')])
     return [b'Hello WSGI World']
 
-app.wsgi_app = DispatcherMiddleware(simple, {'/app-schedule': app.wsgi_app})
+app.wsgi_app = DispatcherMiddleware(simple, {'/app-schedule': app})
 
 
 if __name__ == '__main__':
