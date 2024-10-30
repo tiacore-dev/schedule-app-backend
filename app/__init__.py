@@ -55,14 +55,7 @@ def create_app():
     
 
     # Инициализация API
-    #api = Api(app, doc='/app-schedule/swagger')  # Создаем экземпляр Api
-
-    blueprint = Blueprint('api', __name__, url_prefix='/api')
-    api = Api(blueprint, doc='/doc/')
-
-    app.register_blueprint(blueprint)
-
-    assert url_for('api.doc') == '/api/doc/'
+    api = Api(app, doc='/app-schedule/swagger')  # Создаем экземпляр Api
 
     # Регистрация маршрутов
     register_routes(api)  # Передаем экземпляр Api в функцию регистрации маршрутов
@@ -135,3 +128,13 @@ def create_app():
         return response
     
     return app
+
+
+"""
+    blueprint = Blueprint('api', __name__, url_prefix='/api')
+    api = Api(blueprint, doc='/doc/')
+
+    app.register_blueprint(blueprint)
+
+    assert url_for('api.doc') == '/api/doc/'
+"""
