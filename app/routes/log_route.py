@@ -4,7 +4,7 @@ from flask_jwt_extended import jwt_required
 from request_logger import RequestLogHandler
 from flask_cors import cross_origin
 
-log_ns = Namespace('app-schedule/logs', description='Logs related operations')
+log_ns = Namespace('logs', description='Logs related operations')
 
 @log_ns.route('/')
 class LogResource(Resource):

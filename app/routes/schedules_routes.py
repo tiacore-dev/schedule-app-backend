@@ -7,7 +7,7 @@ from flask_cors import cross_origin
 # Настройка логирования
 app_logger = logging.getLogger('app_logger')
 
-schedules_ns = Namespace('app-schedule/schedules', description='All Schedules operations')
+schedules_ns = Namespace('schedules', description='All Schedules operations')
 
 # Определение модели для ответа о расписании
 schedule_response_model = schedules_ns.model('ScheduleResponse', {
