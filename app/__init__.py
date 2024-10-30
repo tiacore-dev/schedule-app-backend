@@ -49,7 +49,7 @@ def create_app():
     
 
     # Инициализация API
-    api = Api(app, doc='/swagger')  # Создаем экземпляр Api
+    api = Api(app, doc='/app-schedule/swagger')  # Создаем экземпляр Api
 
     # Регистрация маршрутов
     register_routes(api)  # Передаем экземпляр Api в функцию регистрации маршрутов
