@@ -16,6 +16,9 @@ from werkzeug.serving import run_simple
 
 load_dotenv()
 
+def simple(env, resp):
+    resp(b'200 OK', [(b'Content-Type', b'text/plain')])
+    return [b'Hello WSGI World']
 
 def create_app():
     import request_logger, app_logger
@@ -45,7 +48,7 @@ def create_app():
 
     app.config['APPLICATION_ROOT'] = '/app-schedule'
 
-    #app.wsgi_app = DispatcherMiddleware({'/app-schedule': app.wsgi_app})
+    app.wsgi_app = DispatcherMiddleware(simple, {'/app-schedule': app.wsgi_app})
     # Инициализация базы данных
     engine, Session, Base = init_db(database_url)
 
@@ -68,7 +71,7 @@ def create_app():
     @app.before_request
     def before_request():
         # List of routes that do not require authentication
-        open_routes = ['/app-schedule/auth', '/app-schedule/swagger.json', '/app-schedule/swaggerui/', '/app-schedule/swagger', '/app-schedule/home']
+        open_routes = ['/auth', '/swagger.json', '/swaggerui/', '/swagger', '/home']
 
         # Skip authentication check for specific open routes
         if any(request.path.startswith(route) for route in open_routes):
@@ -98,9 +101,9 @@ def create_app():
         entity_id = 'N/A'
 
         # Определение сущности на основе пути
-        if request.path.startswith('/app-schedule/schedule'):
+        if request.path.startswith('/schedule'):
             entity_name = 'schedule'
-        elif request.path.startswith('/app-schedule/request_logs'):
+        elif request.path.startswith('/request_logs'):
             entity_name = 'request_log'
 
         # Поиск ID в аргументах запроса
