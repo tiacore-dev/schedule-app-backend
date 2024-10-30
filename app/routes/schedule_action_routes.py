@@ -8,7 +8,7 @@ from datetime import datetime
 from app.validators import validate_uuid, validate_uuid_param
 from flask_cors import cross_origin
 
-schedule_actions_ns = Namespace('/app-schedule/schedule', description='Schedule Actions operations')
+schedule_actions_ns = Namespace('app-schedule/schedule', description='Schedule Actions operations')
 
 app_logger = logging.getLogger('app_logger')
 

@@ -8,7 +8,7 @@ from flask_cors import cross_origin
 # Настройка логирования
 app_logger = logging.getLogger('app_logger')
 
-request_logs_ns = Namespace('/app-schedule/request_logs', description='Request Logs operations')
+request_logs_ns = Namespace('app-schedule/request_logs', description='Request Logs operations')
 
 
 # Определение модели для ответа о логах

@@ -93,9 +93,9 @@ def create_app():
         entity_id = 'N/A'
 
         # Определение сущности на основе пути
-        if request.path.startswith('/schedule'):
+        if request.path.startswith('/app-schedule/schedule'):
             entity_name = 'schedule'
-        elif request.path.startswith('/request_logs'):
+        elif request.path.startswith('/app-schedule/request_logs'):
             entity_name = 'request_log'
 
         # Поиск ID в аргументах запроса

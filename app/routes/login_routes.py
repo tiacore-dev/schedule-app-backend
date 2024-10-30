@@ -5,7 +5,7 @@ from flask_jwt_extended import create_access_token, create_refresh_token, get_jw
 from flask_cors import cross_origin
 
 
-login_ns = Namespace('/app-schedule/auth', description='Authentication related operations')
+login_ns = Namespace('app-schedule/auth', description='Authentication related operations')
 
 # Определение модели для логина
 login_model = login_ns.model('Login', {
