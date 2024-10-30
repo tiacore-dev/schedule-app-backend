@@ -46,7 +46,7 @@ def create_app():
     # Инициализация JWTManager
     jwt = JWTManager(app)
 
-    app.config['APPLICATION_ROOT'] = '/app-schedule'
+    #app.config['APPLICATION_ROOT'] = '/app-schedule'
 
     app.wsgi_app = DispatcherMiddleware(simple, {'/app-schedule': app.wsgi_app})
     # Инициализация базы данных
