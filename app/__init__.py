@@ -55,7 +55,7 @@ def create_app():
     
 
     # Инициализация API
-    api = Api(app, doc='/app-schedule/swagger')  # Создаем экземпляр Api
+    api = Api(app, doc='/swagger')  # Создаем экземпляр Api
 
     # Регистрация маршрутов
     register_routes(api)  # Передаем экземпляр Api в функцию регистрации маршрутов
@@ -69,7 +69,7 @@ def create_app():
     @app.before_request
     def before_request():
         # List of routes that do not require authentication
-        open_routes = ['/app-schedule/auth', '/app-schedule/swagger.json', '/app-schedule/swaggerui/', '/app-schedule/swagger', '/app-schedule/home']
+        open_routes = ['/auth', '/swagger.json', '/swaggerui/', '/swagger', '/home']
 
         # Skip authentication check for specific open routes
         if any(request.path.startswith(route) for route in open_routes):
@@ -99,9 +99,9 @@ def create_app():
         entity_id = 'N/A'
 
         # Определение сущности на основе пути
-        if request.path.startswith('/app-schedule/schedule'):
+        if request.path.startswith('/schedule'):
             entity_name = 'schedule'
-        elif request.path.startswith('/app-schedule/request_logs'):
+        elif request.path.startswith('/request_logs'):
             entity_name = 'request_log'
 
         # Поиск ID в аргументах запроса
