@@ -1,7 +1,7 @@
 from flask import request, jsonify
 from flask_restx import Namespace, Resource
 
-home_ns = Namespace('app-schedule', description='Check running')
+home_ns = Namespace('', description='Check running')
 
 @home_ns.route('/home')
 class Home(Resource):
