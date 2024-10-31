@@ -2,8 +2,7 @@ name: Deploy to Server
 
 on:
   push:
-    branches:
-      - main  # Укажите вашу основную ветку
+    branches: [ main, dev ]
 
 jobs:
   deploy:
@@ -22,10 +21,13 @@ jobs:
         run: |
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
-          ssh-keyscan -H ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
+          ssh-keyscan -H -t rsa ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
 
+      - name: Deploy to Production
+        if: github.ref_name == 'main'
+        run: ssh -o StrictHostKeyChecking=no -t ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} "cd apps/flask-schedule-app-backend && git pull origin main && docker-compose down && docker-compose up -d"
 
-      - name: Update code on server
-        run: ssh -t ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} "cd apps/flask-schedule-app-backend && git pull origin main && docker-compose down && docker-compose up -d"
-
+      - name: Deploy to Development
+        if: github.ref_name == 'dev'
+        run: ssh -o StrictHostKeyChecking=no -t ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} "cd apps/flask-schedule-app-backend && git pull origin dev && docker-compose down && docker-compose up -d"
