@@ -13,7 +13,7 @@ services:
   alembic:
     build: .
     command: >
-      bash -c "wait-for-it db:5432 -- alembic upgrade head"  # Ждем, пока база данных будет готова
+      bash -c "wait-for-it db:5433 -- alembic upgrade head"  # Ждем, пока база данных будет готова
     environment:
       - DATABASE_URL=${DATABASE_URL}
     depends_on:
@@ -24,7 +24,7 @@ services:
   web:
     build: .
     ports:
-      - "5053:5000"
+      - "5054:5000"
     environment:
       - DATABASE_URL=${DATABASE_URL}
     depends_on:
