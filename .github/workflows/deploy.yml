@@ -26,8 +26,8 @@ jobs:
 
       - name: Deploy to Production
         if: github.ref_name == 'main'
-        run: ssh -o StrictHostKeyChecking=no -t ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} "cd apps/flask-schedule-app-backend && git pull origin main && docker-compose down && docker-compose up -d"
+        run: ssh -o StrictHostKeyChecking=no -t ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} "cd apps/schedule-app-backend && git pull origin main && docker-compose down && docker-compose up -d"
 
       - name: Deploy to Development
         if: github.ref_name == 'dev'
-        run: ssh -o StrictHostKeyChecking=no -t ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} "cd apps/flask-schedule-app-backend && git pull origin dev && docker-compose down && docker-compose up -d"
+        run: ssh -o StrictHostKeyChecking=no -t ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} "cd apps/schedule-app-backend && git pull origin dev && docker-compose down && docker-compose up -d"
