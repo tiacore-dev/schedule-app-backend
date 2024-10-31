@@ -23,10 +23,5 @@ COPY . .
 # Указываем, что контейнер будет слушать на порту 5000
 EXPOSE 5053
 
-# Добавьте установку Gunicorn в ваш Dockerfile
-RUN pip install --no-cache-dir gunicorn
-
-# Измените команду запуска приложения
-#CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:5000", "app:app.create_app()"]
-
-
+# Указываем команду для запуска приложения
+CMD ["python", "run.py"]
