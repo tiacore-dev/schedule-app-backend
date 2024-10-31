@@ -21,7 +21,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Указываем, что контейнер будет слушать на порту 5000
-EXPOSE 5054
+#EXPOSE 5054
 
 # Указываем команду для запуска приложения
 CMD ["python", "run.py"]
