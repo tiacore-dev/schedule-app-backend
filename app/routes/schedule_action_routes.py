@@ -84,7 +84,7 @@ class ScheduleCreate(Resource):
                     id=f"schedule_{new_schedule['id']}"
                 )
                 # Запускаем задачу немедленно после создания
-                execute_schedule(new_schedule[id])
+                execute_schedule(new_schedule['id'])
                 app_logger.info(f"Scheduled interval job created and executed for schedule ID: {new_schedule['id']}")
 
             elif schedule_type == 'daily':
