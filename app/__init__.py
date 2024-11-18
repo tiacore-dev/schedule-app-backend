@@ -53,7 +53,17 @@ def create_app():
     
 
     # Инициализация API
-    api = Api(app, doc='/swagger')  # Создаем экземпляр Api
+    api = Api(app, doc='/swagger', 
+          security='jwt',  # Это добавит возможность указания токена
+          securityDefinitions={
+              'jwt': {
+                  'type': 'apiKey',
+                  'in': 'header',
+                  'name': 'Authorization',
+                  'description': 'JWT token. Example: "Bearer <token>"'
+              }
+          })
+
 
     # Регистрация маршрутов
     register_routes(api)  # Передаем экземпляр Api в функцию регистрации маршрутов
