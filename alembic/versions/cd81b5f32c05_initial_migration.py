@@ -18,7 +18,7 @@ depends_on: Union[str, Sequence[str], None] = None
 
 
 def upgrade() -> None:
-    # Создаем таблицу users
+    """# Создаем таблицу users
     op.create_table(
         'users',
         sa.Column('id', sa.Integer, primary_key=True, autoincrement=True),
@@ -49,11 +49,11 @@ def upgrade() -> None:
         sa.Column('schedule_id', sa.Integer, sa.ForeignKey('schedule.id', ondelete='SET NULL'), nullable=True),
         sa.Column('response', sa.Text, nullable=False),
         sa.Column('timestamp', sa.DateTime, nullable=False, default=sa.func.now())
-    )
+    )"""
 
 
 def downgrade() -> None:
-    # Удаляем таблицу request_log
+    """# Удаляем таблицу request_log
     op.drop_table('request_log')
 
     # Удаляем таблицу schedule
@@ -61,3 +61,4 @@ def downgrade() -> None:
 
     # Удаляем таблицу users
     op.drop_table('users')
+"""

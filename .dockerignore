@@ -5,6 +5,8 @@ __pycache__/
 *.pyo
 *.pyd
 
+not_needed/
+
 # Игнорируем директории с миграциями
 alembic/
 migrations/
